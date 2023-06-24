@@ -1,13 +1,13 @@
 #!/usr/bin/python3
-'''fcreates and distributes an archive to your web servers, using deploy():
-'''
+"""fcreates and distributes an archive to your web servers, using deploy():
+"""
 
 import os
 from datetime import datetime
 from fabric.api import env, local, put, run, runs_once
 
 
-env.hosts = ['34.138.32.248', '3.226.74.205']
+env.hosts = ["34.138.32.248", "3.226.74.205"]
 
 
 @runs_once
@@ -22,7 +22,7 @@ def do_pack():
         cur_time.day,
         cur_time.hour,
         cur_time.minute,
-        cur_time.second
+        cur_time.second,
     )
     try:
         print("Packing web_static to {}".format(output))
@@ -54,7 +54,7 @@ def do_deploy(archive_path):
         run("rm -rf {}web_static".format(folder_path))
         run("rm -rf /data/web_static/current")
         run("ln -s {} /data/web_static/current".format(folder_path))
-        print('New version is now LIVE!')
+        print("New version is now LIVE!")
         success = True
     except Exception:
         success = False
@@ -62,7 +62,9 @@ def do_deploy(archive_path):
 
 
 def deploy():
-    """Archives and deploys the static files to the host servers.
-    """
+    """Archives and deploys the static files to the host servers."""
     archive_path = do_pack()
     return do_deploy(archive_path) if archive_path else False
+
+
+# done with this file

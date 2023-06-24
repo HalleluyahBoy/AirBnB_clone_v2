@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-'''
+"""
 fabric script to distribute an archive to web servers
 ----NEEDS TO REVISIT SCRIPT
-'''
+"""
 
 import os
 from datetime import datetime
 from fabric.api import env, local, put, run, runs_once
 
 
-env.hosts = ['34.138.32.248', '3.226.74.205']
+env.hosts = ["34.138.32.248", "3.226.74.205"]
 
 
 def do_deploy(archive_path):
@@ -29,7 +29,7 @@ def do_deploy(archive_path):
         cur_time.day,
         cur_time.hour,
         cur_time.minute,
-        cur_time.second
+        cur_time.second,
     )
     try:
         print("Packing web_static to {}".format(output))
@@ -61,8 +61,11 @@ def do_deploy(archive_path):
         run("rm -rf {}web_static".format(folder_path))
         run("rm -rf /data/web_static/current")
         run("ln -s {} /data/web_static/current".format(folder_path))
-        print('New version deployed!')
+        print("New version deployed!")
         success = True
     except Exception:
         success = False
     return success
+
+
+# updated
